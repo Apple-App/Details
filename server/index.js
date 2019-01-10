@@ -1,29 +1,29 @@
-const express = require('express');
-const compression = require('compression');
+const express = require("express");
+const compression = require("compression");
 
 const app = express();
 const port = 9002;
 
-const db = require('../db/index.js');
-const getMovie = require('./helper.js');
+// const db = require("../db/index.js");
+const getMovie = require("./helper.js");
 
 app.use((req, res, next) => {
   // console.log(req);
   next();
 });
-app.use(express.static('./client/dist'));
+app.use(express.static("./client/dist"));
 app.use(compression());
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
+  res.header("Access-Control-Allow-Origin", "*");
   res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
   );
   next();
 });
 
 //SERVER DATA
-app.get('/movie/:number', (req, res) => {
+app.get("/movie/:number", (req, res) => {
   const params = req.params.number;
   console.log(params);
   getMovie(params, (err, movie) => {
@@ -37,5 +37,5 @@ app.get('/movie/:number', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log('listening on port: ', port);
+  console.log("listening on port: ", port);
 });

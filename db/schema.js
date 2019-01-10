@@ -1,36 +1,65 @@
-const mongoose = require('mongoose');
-const db = require('./index.js');
+// const Sequelize = require("sequelize");
+// const sequelize = require("./index.js");
 
-const dataSchema = new mongoose.Schema({
-  MovieId: String,
-  Title: String,
-  Theater: String,
-  Showtimes: {
-    Standard: [String],
-    Imax: [String]
-  },
-  TheaterDetails: {
-    Standard: [String]
-  },
-  Trailer: {
-    Links: [String]
-  },
-  Photos: {
-    Links: [String]
-  },
-  Info: {
-    Description: String,
-    Rating: String,
-    Genre: String,
-    DirectedBy: String,
-    WrittenBy: String,
-    ReleaseDate: String,
-    Runtime: String,
-    Studio: String
-  },
-  Cast: [{ Name: String, Photo: String }, { Name: String, Photo: String }]
+// const Movie = sequelize.define("movie", {
+//   MovieId: Sequelize.STRING,
+//   Title: Sequelize.STRING,
+//   Theater: Sequelize.STRING,
+//   Showtimes: Sequelize.JSONB,
+//   TheaterDetails: Sequelize.JSONB,
+//   Trailer: Sequelize.JSONB,
+//   Photos: Sequelize.JSONB,
+//   Info: Sequelize.JSONB,
+//   Cast: Sequelize.ARRAY(Sequelize.JSONB)
+// });
+
+// module.exports = Movie;
+
+const pg = require("pg");
+const sql = require("sql");
+
+const client = new pg.Client({
+  user: "postgres",
+  host: "localhost",
+  database: "details",
+  password: "Leviathan6",
+  port: 5432
 });
 
-let MovieSchema = mongoose.model('Movie', dataSchema);
+client.connect();
 
-module.exports = MovieSchema;
+let table = `CREATE TABLE IF NOT EXISTS movies (
+            MovieId int,
+            Title varchar(255),
+            Theater varchar(255),
+            Showtimes jsonb,
+            TheaterDetails varchar(100) [],
+            Trailer jsonb,
+            Casts jsonb[],
+            Photos jsonb,
+            Info jsonb
+  );`;
+
+client.query(table, (err, res) => {
+  console.log(err, res);
+});
+
+let Movie = sql.define({
+  name: "movies",
+  columns: [
+    "movieid",
+    "title",
+    "theater",
+    "showtimes",
+    "theaterdetails",
+    "trailer",
+    "photos",
+    "info",
+    "casts"
+  ]
+});
+
+module.exports = {
+  client: client,
+  Movie: Movie
+};

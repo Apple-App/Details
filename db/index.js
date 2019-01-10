@@ -1,14 +1,29 @@
-const mongoose = require('mongoose');
+const Sequelize = require("sequelize");
 
-if (process.env.NODE_ENV === 'production') {
-  mongoose.connect(process.env.MONGOURI);
+if (process.env.NODE_ENV === "production") {
+  const sequelize = new Sequelize("details", "postgres", "Leviathan6", {
+    dialect: "postgres",
+    host: "localhost",
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000
+    },
+    operatorsAliases: false
+  });
+  module.exports = sequelize;
 } else {
-  mongoose.connect('mongodb://localhost/movieData');
+  const sequelize = new Sequelize("details", "postgres", "Leviathan6", {
+    dialect: "postgres",
+    host: "localhost",
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000
+    },
+    operatorsAliases: false
+  });
+  module.exports = sequelize;
 }
-
-const db = mongoose.connection;
-
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => console.log('mongodb connection established'));
-
-module.exports = db;
