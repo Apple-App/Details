@@ -2,3 +2,4 @@ node_modules/
 client/dist/bundle.js
 .env
 .prod_env
+db/DBinit/add.csv

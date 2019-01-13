@@ -1,11 +1,11 @@
-import React from "react";
-import { Component } from "react";
-import axios from "axios";
+import React from 'react';
+import { Component } from 'react';
+import axios from 'axios';
 
-import Videos from "./Videos/Videos.jsx";
-import Photos from "./Photos/Photos.jsx";
-import Description from "./Description/Description.jsx";
-import Times from "./Times/Times.jsx";
+import Videos from './Videos/Videos.jsx';
+import Photos from './Photos/Photos.jsx';
+import Description from './Description/Description.jsx';
+import Times from './Times/Times.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -15,16 +15,18 @@ class App extends Component {
     };
     this.API_URL =
       // 'http://ec2-18-218-63-15.us-east-2.compute.amazonaws.com/movie/';
-      process.env.NODE_ENV === "production"
+      process.env.NODE_ENV === 'production'
         ? process.env.API_URL
-        : "http://localhost:9002/movie/";
-    this.movieId = document.URL.substr(-3);
+        : 'http://localhost:9002/movie/';
+    this.movieId = document.location.search.split('?')[1];
   }
   getMovie() {
-    console.log("api url", this.API_URL);
+    console.log('api url', this.API_URL);
+    console.log(this.movieId);
     axios
       .get(this.API_URL + this.movieId)
       .then(({ data }) => {
+        console.log(data);
         this.setState({
           movieData: data
         });
