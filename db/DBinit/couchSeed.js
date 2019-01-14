@@ -161,3 +161,5 @@ init();
 // Movie.get("1").then(body => {
 //   console.log(body);
 // });
+
+// 4850.777503609 seconds for 10m

@@ -169,3 +169,5 @@ init();
 // 100000 x 1 - FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory
 
 // 156.845709856 seconds
+
+// 5065.709953836 seconds for 10m

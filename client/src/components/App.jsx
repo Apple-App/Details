@@ -18,15 +18,12 @@ class App extends Component {
       process.env.NODE_ENV === 'production'
         ? process.env.API_URL
         : 'http://localhost:9002/movie/';
-    this.movieId = document.location.search.split('?')[1];
+    this.movieId = document.location.search.split('?')[1] || 1;
   }
   getMovie() {
-    console.log('api url', this.API_URL);
-    console.log(this.movieId);
     axios
       .get(this.API_URL + this.movieId)
       .then(({ data }) => {
-        console.log(data);
         this.setState({
           movieData: data
         });

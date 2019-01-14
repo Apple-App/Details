@@ -1,17 +1,22 @@
 // sequelize below //////////////////////////////////////////////////////////////////
 
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('details', 'postgres', 'Leviathan6', {
-  dialect: 'postgres',
-  host: 'localhost',
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000
-  },
-  operatorsAliases: false
-});
+const sequelize = new Sequelize(
+  'details',
+  process.env.POSTGRES_USERNAME,
+  process.env.POSTGRES_PASSWORD,
+  {
+    dialect: 'postgres',
+    host: 'localhost',
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000
+    },
+    operatorsAliases: false
+  }
+);
 const Movie = sequelize.define('movie', {
   MovieId: Sequelize.STRING,
   Title: Sequelize.STRING,

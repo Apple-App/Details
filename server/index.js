@@ -1,3 +1,4 @@
+require('dotenv').config();
 require('newrelic');
 const express = require('express');
 const compression = require('compression');
@@ -9,10 +10,10 @@ const port = 9002;
 // const db = require('../db/index.js');
 
 //postgres
-const db = require('../db/schema.js');
+// const db = require('../db/schema.js');
 
 //couch
-// const db = require('../db/noSQLschema.js');
+const db = require('../db/noSQLschema.js');
 
 const getMovie = require('./helper.js');
 
