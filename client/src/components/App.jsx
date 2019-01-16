@@ -14,9 +14,9 @@ class App extends Component {
       movieData: {}
     };
     this.API_URL = 'http://ec2-52-201-21-135.compute-1.amazonaws.com/movie/';
-//      process.env.NODE_ENV === 'production'
-//      ? process.env.API_URL
-//      : 'http://localhost:9002/movie/';
+    //      process.env.NODE_ENV === 'production'
+    //      ? process.env.API_URL
+    //      : 'http://localhost:9002/movie/';
     this.movieId = document.location.search.split('?')[1] || 1;
   }
   getMovie() {
