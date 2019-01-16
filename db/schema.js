@@ -7,7 +7,8 @@ const sequelize = new Sequelize(
   process.env.POSTGRES_PASSWORD,
   {
     dialect: 'postgres',
-    host: process.env.API_URL,
+    host: 'ec2-52-201-21-135.compute-1.amazonaws.com',
+    port: 5432,
     pool: {
       max: 5,
       min: 0,

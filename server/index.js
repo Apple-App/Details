@@ -35,6 +35,7 @@ app.use((req, res, next) => {
 //SERVER DATA
 app.get('/movie/:number', (req, res) => {
   const params = req.params.number;
+  console.log(params);
   getMovie(params, (err, movie) => {
     if (err) {
       console.log(err);
