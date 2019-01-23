@@ -14,26 +14,27 @@ class App extends Component {
       movieData: {}
     };
     // this.API_URL = 'http://ec2-18-235-34-167.compute-1.amazonaws.com/movie/';
-    //      process.env.NODE_ENV === 'production'
-    //      ? process.env.API_URL
-    //      : 'http://localhost:9002/movie/';
-    // this.movieId = document.location.search.split('?')[1] || 1;
+    // process.env.NODE_ENV === 'production'
+    //   ? process.env.API_URL
+    //   : 'http://localhost:9002/movie/';
+    this.API_URL = 'http://localhost:9002/movie/';
+    this.movieId = document.location.search.split('?')[1] || 1;
   }
-  // getMovie() {
-  //   axios
-  //     .get(this.API_URL + this.movieId)
-  //     .then(({ data }) => {
-  //       this.setState({
-  //         movieData: data
-  //       });
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // }
-  // componentDidMount() {
-  //   this.getMovie();
-  // }
+  getMovie() {
+    axios
+      .get(this.API_URL + this.movieId)
+      .then(({ data }) => {
+        this.setState({
+          movieData: data
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+  componentDidMount() {
+    this.getMovie();
+  }
   render() {
     if (this.state.movieData.Title !== undefined) {
       return (
@@ -42,15 +43,6 @@ class App extends Component {
           <Photos movieData={this.state.movieData} />
           <Description movieData={this.state.movieData} />
           <Times movieData={this.state.movieData} />
-        </>
-      );
-    } else if (this.props.movieData.Title !== undefined) {
-      return (
-        <>
-          <Videos movieData={this.props.movieData} />
-          <Photos movieData={this.props.movieData} />
-          <Description movieData={this.props.movieData} />
-          <Times movieData={this.props.movieData} />
         </>
       );
     } else {

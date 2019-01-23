@@ -40,6 +40,7 @@ class Photos extends Component {
     }
     return output;
   }
+
   setActiveDotClass(renderedDot) {
     return this.state.activePage === Number(renderedDot) ? 'active_dot' : null;
   }
@@ -53,10 +54,11 @@ class Photos extends Component {
       });
     }
   }
+
   handleArrowClick(direction) {
     const activePage = this.state.activePage;
     const max = Math.ceil(this.props.movieData.Photos.Links.length / 4) - 1;
-    console.log(max);
+    // console.log(max);
     const min = 0;
     let setTo;
 
@@ -71,9 +73,11 @@ class Photos extends Component {
       sliderDirection: direction
     });
   }
-  componentDidMount() {
+
+  componentWillMount() {
     this.createImageElements();
   }
+
   render() {
     return (
       <section id="Photos">

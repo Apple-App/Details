@@ -1,0 +1,11 @@
+config:
+  target: 'http://localhost:9002'
+  phases:
+    - duration: 60
+      arrivalRate: 10
+  processor: './loadTest.js'
+scenarios:
+  - function: 'randomizer'
+  - flow:
+      - get:
+          url: '/movies/server/{{randomId}}'

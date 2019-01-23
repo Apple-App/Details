@@ -22,7 +22,6 @@ const Carousel = ({
           {setImageElements()}
         </CSSTransitionGroup>
       </div>
-
       <ArrowButton right={right} handleArrowClick={handleArrowClick} />
     </div>
   );
