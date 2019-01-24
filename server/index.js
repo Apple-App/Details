@@ -512,7 +512,7 @@ app.get('/movie/server/:number', (req, res) => {
             </head>
             <body>
             <div id="details">${string}</div>
-            <script src="http://localhost:9002/bundle.js"><script/>
+            <script src="http://ec2-18-235-34-167.compute-1.amazonaws.com/bundle.js"><script/>
             <script>
               ReactDOM.hydrate(
                 React.createElement(App, ${JSON.stringify(props)},
