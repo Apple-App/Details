@@ -5,3 +5,5 @@ client/dist/bundle-server.js
 .prod_env
 db/DBinit/add.csv
 urls.json
+.dockerignore
+Dockerfile

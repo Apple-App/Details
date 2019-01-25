@@ -1,7 +1,5 @@
 import React from 'react';
 import { Component } from 'react';
-import axios from 'axios';
-
 import Videos from './Videos/Videos.jsx';
 import Photos from './Photos/Photos.jsx';
 import Description from './Description/Description.jsx';
@@ -13,27 +11,8 @@ class App extends Component {
     this.state = {
       movieData: {}
     };
-    // this.API_URL = 'http://ec2-18-235-34-167.compute-1.amazonaws.com/movie/';
-    //      process.env.NODE_ENV === 'production'
-    //      ? process.env.API_URL
-    //      : 'http://localhost:9002/movie/';
-    // this.movieId = document.location.search.split('?')[1] || 1;
   }
-  // getMovie() {
-  //   axios
-  //     .get(this.API_URL + this.movieId)
-  //     .then(({ data }) => {
-  //       this.setState({
-  //         movieData: data
-  //       });
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // }
-  // componentDidMount() {
-  //   this.getMovie();
-  // }
+
   render() {
     if (this.state.movieData.Title !== undefined) {
       return (
