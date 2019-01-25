@@ -27,7 +27,7 @@ const component = require('../client/dist/bundle-server').default;
 
 // Redis
 const redis = require('redis');
-const client = redis.createClient('redis://localhost:6379');
+const client = redis.createClient('6379', '18.235.34.167');
 
 client.on('connect', () => {
   console.log('redis connected!');
@@ -60,9 +60,9 @@ app.get('/loaderio-ade6ece33af1644014596ced42e4b450/', (req, res) => {
 app.get('/movie/:number', (req, res) => {
   const params = req.params.number;
   client.get(params, (err, data) => {
-    if (!err) {
+    if (!data) {
       getMovie(params, (err, movie) => {
-        client.setex(params, 6000, JSON.stringify(movie), (err, info) => {
+        client.setex(params, 60, JSON.stringify(movie), (err, info) => {
           console.log(info);
         });
         if (err) {
@@ -84,7 +84,7 @@ app.get('/movie/server/:number', (req, res) => {
   client.get(params, (err, data) => {
     if (!data) {
       getMovie(params, (err, movie) => {
-        client.setex(params, 6000, JSON.stringify(movie), (err, info) => {
+        client.setex(params, 60, JSON.stringify(movie), (err, info) => {
           console.log(info);
         });
         if (err) {
